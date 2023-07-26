@@ -5,19 +5,18 @@ import Topo from "../componentes/Topo";
 
 export default function  AreaLogada(){
     return(
-        <div>
+       
             <SCareaLogada>
-                area
         <Topo/>
         <Corpo/>
         <Rodape/>
         </SCareaLogada>
-        </div>
+       
     );
 }
 
 const SCareaLogada = styled.div`
-
-background-color: yellow;
+height: 100% ;
+width: 100% ;
 
 `;

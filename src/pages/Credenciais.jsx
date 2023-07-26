@@ -6,7 +6,7 @@ export default function Credenciais(){
     return(
         <div>
         <SCcredenciais>
-        <img src="../../public/img/Group 8.png" alt="" />
+        
         <TelaLogin/>
         <TelaCadastro/>
         </SCcredenciais>
@@ -21,12 +21,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-img{
-    width: 180px ;
-    height: 180px ;
-    margin-bottom: 32px;
-    margin-top: 68px;
-}
+
 
 
 `;
