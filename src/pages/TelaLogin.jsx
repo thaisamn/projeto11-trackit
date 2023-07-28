@@ -12,7 +12,7 @@ export default function TelaLogin(){
     return(
         <div>
         <SCtelaLogin>
-            <img src="../../public/img/Group 8.png" alt="" />
+            <img src="public/img/Group 8.png" alt="" />
          <input type="text" placeholder="email"/>
          <input type="text" placeholder="senha"/>
          <button onClick={login} >Entrar</button>
@@ -34,7 +34,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: #fff;
-height: 100%;
+
 input{
     margin-bottom: 6px;
     padding-left: 11px ;
