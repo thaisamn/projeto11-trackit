@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
+
 export default function TelaHabitos() {
   return (
+    <>
+   
+    
     <SCtelaHabitos>
       <SCtituloHabito>
         <h1>Meus hábitos</h1>
@@ -27,29 +31,42 @@ export default function TelaHabitos() {
       
       <div>
         <p>
-          Você não tem nenhum hábito cadastrado ainda. 
-        </p>
-        <br />
-        <p>
-        Adicione um hábito para começar a trackear!
+          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
         </p>
       </div>
     </SCtelaHabitos>
+    
+    
+    </>
   );
 }
 
 
 //styled
 
+const SCtelaHabitos = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 18px;
+  flex-direction: column;
+  margin-top: 28px;
+
+  
+ 
+`;
+
 const SCtituloHabito = styled.div`
  display: flex;
     width: 100%;
+    height: 100%;
     justify-content: space-between;
+    align-items: center;
  
  h1 {
     font-size: 23px;
     color: #126ba5;
     font-weight: 400;
+    text-align: center;
   }
  button {
     background-color: #52b6ff;
@@ -64,7 +81,7 @@ const SCtituloHabito = styled.div`
 `;
 
 const SCbutoesSemanaisHabito = styled.div`
-
+background-color: #fff;
 button{
     background-color: #fff;
     margin-top: 8px;
@@ -83,7 +100,9 @@ const SCbutoesFinais = styled.div`
     margin-left: 5px;
     display: flex;
     justify-content: end;
-    button{background-color: #52b6ff;
+    background-color: #fff;
+    button{
+    background-color: #52b6ff;
     border: none;
     border-radius: 5px;
     width: 84px;
@@ -96,44 +115,32 @@ const SCbutoesFinais = styled.div`
 `;
 
 const SCcaixahabito = styled.div`
-margin-top: 20px ;
-margin-bottom: 20px ;
-
+box-sizing: border-box;
+margin-bottom:29px;
+margin-top:22px;
+padding:18px;
 background-color: #fff;
 height: 180px;
-padding: 17px;
+width: 100%;
 display: flex;
 flex-direction: column ;
 border-radius: 5px;
-width: 100%;
+
 
 input{
     border-radius: 5px;
+    background-color: #fff;
     border: 1px solid #DBDBDB;
     height: 45px;
     padding-left: 15px;
     font-size: 19px;
     &::placeholder{
         color: #DBDBDB;
+
     }
 }
 
 `;
 
 
-const SCtelaHabitos = styled.div`
-  width: 100%;
-  padding-left: 18px;
-  padding-right: 18px;
-  display: flex;
-  flex-direction: column;
-  
-  align-items: center;
-  margin-top: 28px;
-div{
 
-    
-}
-  
- 
-`;

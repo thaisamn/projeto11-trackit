@@ -1,26 +1,25 @@
 import styled from "styled-components";
-import TelaHabitos from "../pages/TelaHabitos";
-import TelaHistoricos from "../pages/TelaHistorico";
-import TelaHoje from "../pages/TelaHoje";
+import Topo from "./Topo";
+import Rodape from "./Rodape";
 
-export default function  Corpo(){
+export default function  Corpo({children}){
     return(
-        <div><SCcorpo>
-        <TelaHabitos/>
-        <TelaHoje/>
-        <TelaHistoricos/>
+        
+        <SCcorpo>
+            <Topo/>
+            {children}
+            <Rodape/>
         </SCcorpo>
-        </div>
+        
     );
 }
 
 const SCcorpo = styled.div`
-
-background-color: #F2F2F2;
 display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+width: 100%;
+height: 100%;
+margin-top: 70px;
+margin-bottom: 70px;
 
 
 

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 export default function TelaCadastro(){
     return(
         <div>
@@ -12,7 +11,7 @@ export default function TelaCadastro(){
          <input type="text" placeholder="nome"/>
          <input type="text" placeholder="foto"/>
          <button>Cadastrar</button>
-         <Link to="/">Já tem uma conta? Faça login!</Link>
+         <Link to="/">Não tem uma conta? Cadastre-se!</Link>
         </SCtelacadastro>
         </div>
     );
@@ -23,11 +22,14 @@ const SCtelacadastro = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+background-color: #fff;
 
 input{
     margin-bottom: 6px;
     padding-left: 11px ;
     border: 1px solid #d4d4d4;
+    background-color: #fff;
+
     width: 303px;
     height: 45px;
     font-size: 19px;
@@ -39,10 +41,11 @@ input{
 }
 button{
     background-color: #52B6FF;
+    text-align: center;
     border-radius: 5px;
     border: 3px solid #52B6FF;
     color:#FFFFFF;
-    width: 100% ;
+    width: 320px ;
     height: 45px;
     margin-bottom: 25px;
     font-size: 20px;
@@ -54,8 +57,11 @@ img{
     width: 180px ;
     height: 180px ;
     margin-bottom: 32px;
-    margin-top: 68px;
+    margin-top: 42px;
+    background-color: #fff;
+
 }
+
 
 
 
