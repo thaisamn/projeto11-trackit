@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TelaLogin from "./pages/TelaLogin";
 import TelaCadastro from "./pages/TelaCadastro";

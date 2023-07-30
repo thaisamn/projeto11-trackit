@@ -2,15 +2,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useContextoUsuario } from "./contexto/contextoUsuario";
 
 export default function Rodape() {
+  const { habitos } = useContextoUsuario();
   return (
-    <div>
+    <div data-test="menu">
       <SCrodape>
-        <SCbutoes to="/habitos">Hábitos</SCbutoes>
-        <SCbutoesHoje to="/hoje">
+        <SCbutoes data-test="habit-link" to="/habitos">
+          Hábitos
+        </SCbutoes>
+        <SCbutoesHoje data-test="today-link" to="/hoje">
           <CircularProgressbar
-            value={50}
+            value={habitos.porcentagem}
             text={`Hoje`}
             background
             backgroundPadding={6}
@@ -22,7 +26,9 @@ export default function Rodape() {
             })}
           />
         </SCbutoesHoje>
-        <SCbutoes to="/historico">Históricos</SCbutoes>
+        <SCbutoes data-test="history-link" to="/historico">
+          Históricos
+        </SCbutoes>
       </SCrodape>
     </div>
   );

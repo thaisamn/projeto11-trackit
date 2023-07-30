@@ -4,6 +4,7 @@ import { useContextoUsuario } from "../componentes/contexto/contextoUsuario";
 import { useEffect, useState } from "react";
 
 export default function TelaHabitos() {
+  const { pegarHabitos } = useContextoUsuario();
   const [habitos, setHabitos] = useState([]);
   const [nomeHabito, setNomeHabito] = useState("");
   const [diaHabito, setDiaHabito] = useState([]);
@@ -31,6 +32,7 @@ export default function TelaHabitos() {
       })
       .then((resp) => {
         pegarHabitosDoUsuario();
+        pegarHabitos();
         limparForumluario();
       });
     setCarregando(false);
@@ -71,6 +73,7 @@ export default function TelaHabitos() {
         <SCtituloHabito>
           <h1>Meus hábitos</h1>
           <button
+            data-test="habit-create-btn"
             disabled={formularioAberto}
             onClick={(_) => setFormularioAberto(!formularioAberto)}
           >
@@ -78,8 +81,9 @@ export default function TelaHabitos() {
           </button>
         </SCtituloHabito>
         {formularioAberto && (
-          <SCcaixahabito>
+          <SCcaixahabito data-test="habit-create-container">
             <input
+              data-test="habit-name-input"
               value={nomeHabito}
               onChange={(e) => setNomeHabito(e.target.value)}
               type="text"
@@ -93,10 +97,17 @@ export default function TelaHabitos() {
               />
             </SCbutoesSemanaisHabito>
             <SCbutoesFinais>
-              <SCbotaoEspecial onClick={(_) => setFormularioAberto(false)}>
+              <SCbotaoEspecial
+                data-test="habit-create-cancel-btn"
+                onClick={(_) => setFormularioAberto(false)}
+              >
                 Cancelar
               </SCbotaoEspecial>
-              <button onClick={criarHabito} disabled={carregando}>
+              <button
+                data-test="habit-create-save-btn"
+                onClick={criarHabito}
+                disabled={carregando}
+              >
                 Salvar
               </button>
             </SCbutoesFinais>
@@ -105,10 +116,13 @@ export default function TelaHabitos() {
         {habitos.length > 0 ? (
           <>
             {habitos.map((habito, index) => (
-              <SCcaixahabito key={index}>
+              <SCcaixahabito data-test="habit-container" key={index}>
                 <div>
-                  <span>{habito.name}</span>
-                  <button onClick={(_) => deletarHabito(habito.id)}>
+                  <span data-test="habit-name">{habito.name}</span>
+                  <button
+                    data-test="habit-delete-btn"
+                    onClick={(_) => deletarHabito(habito.id)}
+                  >
                     excluir
                   </button>
                 </div>
@@ -138,6 +152,7 @@ function BotoesDiasDaSemana({ diasHabito = [], toggleDoDia }) {
 
   return diasDaSemana.map((dia, index) => (
     <SCButaoDiasSemana
+      data-test="habit-day"
       key={index}
       selecionado={diasHabito.includes(index)}
       onClick={(_) => toggleDoDia(index)}

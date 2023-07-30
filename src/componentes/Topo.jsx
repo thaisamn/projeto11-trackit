@@ -5,10 +5,10 @@ export default function Topo() {
   const { usuario } = useContextoUsuario();
   console.log(usuario);
   return (
-    <div>
+    <div data-test="header">
       <SCtopo>
         <img src="../../public/img/TrackIt.png" alt="" />
-        <SCAvatar src={usuario.image} alt="" />
+        <SCAvatar data-test="avatar" src={usuario.image} alt="" />
       </SCtopo>
     </div>
   );
@@ -24,7 +24,7 @@ const SCtopo = styled.div`
   background-color: #126ba5;
   height: 70px;
   width: 100%;
-
+  z-index: 9999;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

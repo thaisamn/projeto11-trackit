@@ -41,6 +41,7 @@ export default function TelaLogin() {
         <img src="public/img/Group 8.png" alt="" />
         <form onSubmit={ChamandoFuncao}>
           <input
+            data-test="email-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -49,6 +50,7 @@ export default function TelaLogin() {
             disabled={carregando}
           />
           <input
+            data-test="password-input"
             type="text"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
@@ -57,7 +59,7 @@ export default function TelaLogin() {
             disabled={carregando}
           />
 
-          <button type="submit" disabled={carregando}>
+          <button data-test="login-btn" type="submit" disabled={carregando}>
             {carregando ? (
               <ThreeDots
                 height="80"
@@ -74,7 +76,9 @@ export default function TelaLogin() {
             )}
           </button>
         </form>
-        <SClink to="/cadastro">Não tem uma conta? Cadastre-se!</SClink>
+        <SClink data-test="signup-link" to="/cadastro">
+          Não tem uma conta? Cadastre-se!
+        </SClink>
       </SCtelaLogin>
     </div>
   );

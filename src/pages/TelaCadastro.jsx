@@ -43,6 +43,7 @@ export default function TelaCadastro() {
         <img src="../../public/img/Group 8.png" alt="" />
         <form onSubmit={ChamandoFuncao}>
           <input
+            data-test="email-input"
             disabled={carregando}
             type="email"
             value={email}
@@ -51,6 +52,7 @@ export default function TelaCadastro() {
             placeholder="email"
           />
           <input
+            data-test="password-input"
             disabled={carregando}
             type="text"
             value={senha}
@@ -59,6 +61,7 @@ export default function TelaCadastro() {
             placeholder="senha"
           />
           <input
+            data-test="user-name-input"
             disabled={carregando}
             type="text"
             value={nome}
@@ -67,6 +70,7 @@ export default function TelaCadastro() {
             placeholder="nome"
           />
           <input
+            data-test="user-image-input"
             disabled={carregando}
             type="text"
             value={foto}
@@ -74,7 +78,7 @@ export default function TelaCadastro() {
             required
             placeholder="foto"
           />
-          <button type="submit">
+          <button data-test="signup-btn" type="submit">
             {carregando ? (
               <ThreeDots
                 height="80"
@@ -91,7 +95,9 @@ export default function TelaCadastro() {
             )}
           </button>
         </form>
-        <Link to="/">Já tem uma conta? faça login!</Link>
+        <Link data-test="login-link" to="/">
+          Já tem uma conta? faça login!
+        </Link>
       </SCtelacadastro>
     </div>
   );

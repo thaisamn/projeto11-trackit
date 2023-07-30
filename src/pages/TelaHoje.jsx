@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { DesmarcarComoFeito, HabitosHoje, MarcarComoFeito } from "../api";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
+import { useContextoUsuario } from "../componentes/contexto/contextoUsuario";
 dayjs.extend(weekday);
 
 const diaSemana = {
@@ -16,26 +17,7 @@ const diaSemana = {
 };
 
 export default function TelaHoje() {
-  const [habitosDeHoje, setHabitosDeHoje] = useState([]);
-  const [porcentagemConcluido, setporcentagemConcluido] = useState(0);
-
-  const calcularPorcentagem = () => {
-    const totalTarefas = habitosDeHoje.length;
-    const tarefasConcluidas = habitosDeHoje.filter(
-      (habito) => habito.done
-    ).length;
-    return (tarefasConcluidas / totalTarefas) * 100;
-  };
-
-  useEffect(() => {
-    const porcentagem = calcularPorcentagem();
-    setporcentagemConcluido(porcentagem);
-  }, [habitosDeHoje]);
-
-  const pegarHabitos = async () => {
-    const resposta = await HabitosHoje();
-    setHabitosDeHoje(resposta.data);
-  };
+  const { habitos, pegarHabitos } = useContextoUsuario();
 
   const toggleFeito = (idHabito, feito) => {
     if (feito) {
@@ -54,28 +36,30 @@ export default function TelaHoje() {
     <>
       <SCtelaHoje>
         <SCcaixatitulo>
-          <h1>
+          <h1 data-test="today">
             {diaSemana[dayjs().weekday()]}, {dayjs().format("DD/MM")}
           </h1>
-          {porcentagemConcluido > 0 ? (
-            <p
-              style={{
-                color: "#8FC549",
-              }}
-            >{`${porcentagemConcluido}% dos hábitos concluídos`}</p>
-          ) : (
-            <p>Nenhum hábito concluído ainda</p>
-          )}
+          <p
+            data-test="today-counter"
+            style={{
+              color: `${habitos.porcentagem > 0 ? "#8FC549" : ""}`,
+            }}
+          >
+            {habitos.porcentagem > 0
+              ? `${habitos.porcentagem}% dos hábitos concluídos`
+              : "Nenhum hábito concluído ainda"}
+          </p>
         </SCcaixatitulo>
-        {habitosDeHoje.length > 0 &&
-          habitosDeHoje.map((habito) => (
-            <SCcaixahabito>
+        {habitos.habitosHoje.length > 0 &&
+          habitos.habitosHoje.map((habito) => (
+            <SCcaixahabito data-test="today-habit-container">
               <SCtextos>
-                <h1>{habito.name} </h1>
-                <SCp sucesso={habito.done}>
+                <h1 data-test="today-habit-name">{habito.name} </h1>
+                <SCp data-test="today-habit-sequence" sucesso={habito.done}>
                   Sequência atual: <span>{habito.currentSequence} dias</span>
                 </SCp>
                 <SCp
+                  data-test="today-habit-record"
                   sucesso={
                     habito.currentSequence &&
                     habito.currentSequence >= habito.highestSequence
@@ -85,6 +69,7 @@ export default function TelaHoje() {
                 </SCp>
               </SCtextos>
               <SCcheck
+                data-test="today-habit-check-btn"
                 feito={habito.done}
                 onClick={(_) => toggleFeito(habito.id, habito.done)}
               >
@@ -99,7 +84,6 @@ export default function TelaHoje() {
 
 const SCp = styled.p`
   background-color: #fff;
-  font-family: Lexend Deca;
   font-size: 13px;
   font-weight: 400;
   color: "#666";
@@ -142,13 +126,11 @@ const SCcaixatitulo = styled.div`
 
   h1 {
     color: #126ba5;
-    font-family: Lexend Deca;
     font-size: 23px;
     font-weight: 400;
   }
   p {
     color: #bababa;
-    font-family: Lexend Deca;
     font-size: 18px;
     font-weight: 400;
   }
@@ -160,14 +142,14 @@ const SCtextos = styled.div`
   h1 {
     background-color: #fff;
     color: #666;
-    font-family: Lexend Deca;
     font-size: 19.976px;
     font-weight: 400;
     margin-bottom: 8px;
   }
 `;
 
-const SCcheck = styled.div`
+const SCcheck = styled.button`
+  cursor: pointer;
   margin-left: 5px;
   width: 69px;
   height: 69px;
