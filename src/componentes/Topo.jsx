@@ -7,7 +7,7 @@ export default function Topo() {
   return (
     <div data-test="header">
       <SCtopo>
-        <img src="../../public/img/TrackIt.png" alt="" />
+        <img src="assets/img/TrackIt.png" alt="" />
         <SCAvatar data-test="avatar" src={usuario.image} alt="" />
       </SCtopo>
     </div>

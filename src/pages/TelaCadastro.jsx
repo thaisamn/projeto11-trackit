@@ -40,7 +40,7 @@ export default function TelaCadastro() {
   return (
     <div>
       <SCtelacadastro>
-        <img src="../../public/img/Group 8.png" alt="" />
+        <img src="assets/img/Group 8.png" alt="" />
         <form onSubmit={ChamandoFuncao}>
           <input
             data-test="email-input"
