@@ -78,7 +78,7 @@ export default function TelaCadastro() {
             required
             placeholder="foto"
           />
-          <button data-test="signup-btn" type="submit">
+          <button data-test="signup-btn" disabled={carregando} type="submit">
             {carregando ? (
               <ThreeDots
                 height="80"

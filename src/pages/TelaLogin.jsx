@@ -30,6 +30,7 @@ export default function TelaLogin() {
       })
       .catch((_) => {
         alert("Erro ao fazer login, revise os dados enviados");
+        setCarregando(false);
       });
 
     setCarregando(false);
