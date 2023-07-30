@@ -1,21 +1,56 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FazerCadastro } from "../api";
+import { useState } from "react";
 
 export default function TelaCadastro(){
+	const navigate = useNavigate()
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [nome, setNome] = useState("");
+    const [foto, setFoto] = useState("");
+
+    function ChamandoFuncao(event){
+        event.preventDefault(); 
+      
+
+        const dadosDoCliente = {
+            email: email,
+            name: nome,
+            image: foto,
+            password: senha
+        }
+
+        const resposta = FazerCadastro(dadosDoCliente)
+
+        resposta.then(() => navigate("/")) 
+    }
+    
+    
+    
+    
+    
+    
+    
     return(
         <div>
         <SCtelacadastro>
         <img src="../../public/img/Group 8.png" alt="" />
-         <input type="text" placeholder="email"/>
-         <input type="text" placeholder="senha"/>
-         <input type="text" placeholder="nome"/>
-         <input type="text" placeholder="foto"/>
-         <button>Cadastrar</button>
+        <form onSubmit={ChamandoFuncao} >
+         <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="email"/>
+         <input type="text" value={senha} onChange={e => setSenha(e.target.value)} required placeholder="senha"/>
+         <input type="text" value={nome} onChange={e => setNome(e.target.value)} required placeholder="nome"/>
+         <input type="text" value={foto} onChange={e => setFoto(e.target.value)} required placeholder="foto"/>
+         <button type="submit" >Cadastrar</button>
+         </form>
          <Link to="/">Não tem uma conta? Cadastre-se!</Link>
         </SCtelacadastro>
         </div>
     );
 }
+
+
+
 
 const SCtelacadastro = styled.div`
 

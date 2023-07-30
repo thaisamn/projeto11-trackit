@@ -18,4 +18,5 @@ export default function  AreaLogada(){
 const SCareaLogada = styled.div`
 position: relative;
 
+
 `;

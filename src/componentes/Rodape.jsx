@@ -5,9 +5,9 @@ export default function  Rodape(){
     return(
         <div>
             <SCrodape>
-        <Link to="/habitos" >Hábitos</Link>
-        <Link to="/hoje">Hoje</Link>
-        <Link to="/historico">Históricos</Link>
+        <SCbutoes to="/habitos" >Hábitos</SCbutoes>
+        <SCbutoesHoje to="/hoje">Hoje</SCbutoesHoje>
+        <SCbutoes to="/historico">Históricos</SCbutoes>
         </SCrodape>
         </div>
     );
@@ -26,13 +26,44 @@ bottom: 0;
 left: 0;
 width: 100%;
 
-button{
-    background-color: #FFFFFF;
-    border: none;
-    font-size: 18px;
-    color: #52B6FF ;
-    font-weight: 400;
 
-}
+
+`;
+
+const SCbutoes = styled(Link)`
+border: none;
+background-color: #fff;
+color: #52B6FF;
+text-align: center;
+font-size: 18px;
+font-weight: 400;
+text-decoration: none;
+&:hover {
+  font-size: 22px;
+
+  
+  }
+`;
+
+const SCbutoesHoje = styled(Link)`
+border: none;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #52B6FF;
+color: #fff;
+text-align: center;
+font-size: 18px;
+font-weight: 400;
+width: 91px;
+height: 91px;
+border-radius: 50%;
+margin-bottom: 5%;
+text-decoration: none;
+&:hover {
+  font-size: 22px;
+
+  
+  }
 
 `;
