@@ -203,6 +203,7 @@ const SCtituloHabito = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 
   h1 {
     font-size: 23px;

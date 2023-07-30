@@ -26,7 +26,7 @@ export default function TelaLogin() {
     resposta
       .then((resp) => {
         salvarUsuario(resp.data);
-        navigate("/habitos");
+        navigate("/hoje");
       })
       .catch((_) => {
         alert("Erro ao fazer login, revise os dados enviados");

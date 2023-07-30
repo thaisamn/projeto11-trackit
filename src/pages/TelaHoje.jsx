@@ -125,11 +125,13 @@ const SCcaixatitulo = styled.div`
   margin-bottom: 20px;
 
   h1 {
+    margin: 0;
     color: #126ba5;
     font-size: 23px;
     font-weight: 400;
   }
   p {
+    margin: 0;
     color: #bababa;
     font-size: 18px;
     font-weight: 400;
