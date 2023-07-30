@@ -117,15 +117,15 @@ export default function TelaHabitos() {
           <>
             {habitos.map((habito, index) => (
               <SCcaixahabito data-test="habit-container" key={index}>
-                <div>
+                <SCAcaoTituloHabito>
                   <span data-test="habit-name">{habito.name}</span>
-                  <button
+                  <SCIconButton
                     data-test="habit-delete-btn"
                     onClick={(_) => deletarHabito(habito.id)}
                   >
-                    excluir
-                  </button>
-                </div>
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </SCIconButton>
+                </SCAcaoTituloHabito>
                 <SCbutoesSemanaisHabito>
                   <BotoesDiasDaSemana diasHabito={habito.days} />
                 </SCbutoesSemanaisHabito>
@@ -164,6 +164,21 @@ function BotoesDiasDaSemana({ diasHabito = [], toggleDoDia }) {
 
 //styled
 
+const SCAcaoTituloHabito = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const SCIconButton = styled.button`
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  width: 15px;
+  height: 15px;
+  font-size: 19px;
+`;
+
 const SCButaoDiasSemana = styled.button`
   background-color: ${(props) => (props.selecionado ? "#dbdbdb" : "#ffff")};
   margin-top: 8px;
@@ -179,15 +194,13 @@ const SCButaoDiasSemana = styled.button`
 const SCtelaHabitos = styled.div`
   width: 100%;
   display: flex;
-  margin: 18px;
+  padding: 18px;
   flex-direction: column;
-  margin-top: 28px;
 `;
 
 const SCtituloHabito = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
 
@@ -252,8 +265,7 @@ const SCbotaoEspecial = styled.div`
 
 const SCcaixahabito = styled.div`
   box-sizing: border-box;
-  margin-bottom: 29px;
-  margin-top: 22px;
+  margin-bottom: 10px;
   padding: 18px;
   background-color: #fff;
   width: 100%;
