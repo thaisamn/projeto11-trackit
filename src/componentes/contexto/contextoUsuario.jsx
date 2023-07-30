@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const valorInicial = {
   token: "",
@@ -13,6 +13,15 @@ const ContextoUsuarioProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(valorInicial.usuario);
   const [token, setToken] = useState("");
 
+  useEffect(() => {
+    const dadoString = localStorage.getItem("usuario");
+    const usuario = JSON.parse(dadoString);
+    if (usuario) {
+      setToken(usuario.token);
+      setUsuario(usuario);
+    }
+  }, []);
+
   const salvarToken = async (token) => {
     localStorage.setItem("token", token);
     setToken(token);
@@ -20,6 +29,7 @@ const ContextoUsuarioProvider = ({ children }) => {
 
   const salvarUsuario = (dados) => {
     salvarToken(dados.token);
+    localStorage.setItem("usuario", JSON.stringify(dados));
     setUsuario({ ...dados });
   };
 

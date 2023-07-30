@@ -3,15 +3,22 @@ import { useContextoUsuario } from "./contexto/contextoUsuario";
 
 export default function Topo() {
   const { usuario } = useContextoUsuario();
+  console.log(usuario);
   return (
     <div>
       <SCtopo>
         <img src="../../public/img/TrackIt.png" alt="" />
-        <img src={usuario.image} alt="" />
+        <SCAvatar src={usuario.image} alt="" />
       </SCtopo>
     </div>
   );
 }
+
+const SCAvatar = styled.img`
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+`;
 
 const SCtopo = styled.div`
   background-color: #126ba5;

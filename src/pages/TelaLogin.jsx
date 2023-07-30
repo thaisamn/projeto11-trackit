@@ -3,14 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { FazerLogin } from "../api";
 import { useState } from "react";
 import { useContextoUsuario } from "../componentes/contexto/contextoUsuario";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function TelaLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const { salvarUsuario } = useContextoUsuario();
+  const [carregando, setCarregando] = useState(false);
 
   function ChamandoFuncao(event) {
+    setCarregando(true);
     event.preventDefault();
 
     const dadosDoCliente = {
@@ -20,10 +23,16 @@ export default function TelaLogin() {
 
     const resposta = FazerLogin(dadosDoCliente);
 
-    resposta.then((resp) => {
-      salvarUsuario(resp.data);
-      navigate("/habitos");
-    });
+    resposta
+      .then((resp) => {
+        salvarUsuario(resp.data);
+        navigate("/habitos");
+      })
+      .catch((_) => {
+        alert("Erro ao fazer login, revise os dados enviados");
+      });
+
+    setCarregando(false);
   }
 
   return (
@@ -37,6 +46,7 @@ export default function TelaLogin() {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="email"
+            disabled={carregando}
           />
           <input
             type="text"
@@ -44,11 +54,27 @@ export default function TelaLogin() {
             onChange={(e) => setSenha(e.target.value)}
             required
             placeholder="senha"
+            disabled={carregando}
           />
 
-          <button type="submit">Entrar</button>
+          <button type="submit" disabled={carregando}>
+            {carregando ? (
+              <ThreeDots
+                height="80"
+                width="80"
+                color="#fff"
+                wrapperStyle={{
+                  background: "transparent",
+                  "background-color": "transparent",
+                }}
+                wrapperClassName=""
+              />
+            ) : (
+              "Entrar"
+            )}
+          </button>
         </form>
-        <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+        <SClink to="/cadastro">Não tem uma conta? Cadastre-se!</SClink>
       </SCtelaLogin>
     </div>
   );
@@ -60,6 +86,12 @@ const SCtelaLogin = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+  }
 
   input {
     margin-bottom: 6px;
@@ -77,6 +109,7 @@ const SCtelaLogin = styled.div`
       color: #dbdbdb;
     }
   }
+
   button {
     background-color: #52b6ff;
     border-radius: 5px;
@@ -88,6 +121,13 @@ const SCtelaLogin = styled.div`
     font-size: 20px;
     text-align: center;
     font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      background-color: transparent;
+    }
   }
   img {
     width: 180px;
@@ -97,3 +137,17 @@ const SCtelaLogin = styled.div`
     background-color: #fff;
   }
 `;
+const SClink = styled(Link)`
+  background-color: #fff;
+
+  &:hover {
+  }
+`;
+
+// const SCform = styled(form)`
+//   background-color: #fff;
+
+//   &:hover {
+//     font-size: 22px;
+//   }
+// `;
